@@ -79,7 +79,7 @@ function setData1(isFirst, start, end) {
             .style("text-anchor", "start")
             .text(function(d){return d['count']});           
     
-        title1.text("Average runtime of movies by release year");
+        title1.text("Number of Titles by Category on Netflix");
 
         bars.exit().remove();
         counts.exit().remove();
