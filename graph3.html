@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <meta charset="utf-8">
+        <title>Graph 3</title>
+        <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css">
+        <link rel="stylesheet" href="main.css"/>
+        <!--Feel free to add more CSS files as needed-->
+        <script type="text/javascript" src="https://d3js.org/d3.v5.min.js"></script>
+    </head>
+    <form method="get" action="/index.html">
+        <button type="submit" class="btn btn-info"> ← Back</button>
+    </form>   
+<body>
+    <div class="header ">
+        <h3>Network of Actors</h3>
+        <h5>Description: Each circle represents an actor, and a line is a movie they acted in</h4>
+        <div style="display: flex; justify-content: center;"> 
+        <button type="button" class="btn btn-info myButton" onclick="moreActors()">More Titles</button>
+        <button type="button" class="btn btn-info myButton" onclick="lessActors()">Fewer Titles</button>
+        <text id="numActorsTitle" style="margin-right: 5px; position:relative; top:8px;">2 titles</text>
+        <div id="tooltipDiv" class="tooltipDiv"><text id="actorLabel" style="position:absolute;"></text>
+            <text id="linkLabel" style="position:absolute;"></text>
+        
+        </div>
+        <select name="comparator" id="comparatorSelector">
+            <option value="0">Alphabetical</option>
+            <option value="1">Number of Actors</option>
+            <option value="2">Year (ascending)</option>
+            <option value="3">Year (descending)</option>
+          </select>
+          <button type="button" class="btn btn-info myButton" onclick="run()">Go</button>
+        </div>
+        <div id="graph3" style="display: flex; justify-content: center;"></div>
+    </div>
+    <script type="text/javascript" src="main.js"></script>
+    <script type="text/javascript" src="graph2.js"></script>
+    <script type="text/javascript" src="graph3.js"></script>
+
+</body>
+</html>

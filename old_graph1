@@ -1,0 +1,179 @@
+// // CSV filenames for artist and song data
+// // let filenames = ["netflix_titles.csv"];
+
+// let genresDict = {};
+// let genreKeys; 
+// let width = 900,
+//     height = 350;
+
+//     const margin = {top: 40, right: 100, bottom: 40, left: 200};
+
+// // TODO: Set up SVG object with width, height and margin
+// let svg1 = d3.select('#graph1')
+//     .append("svg1")
+//     .attr("width", width)     // HINT: width
+//     .attr("height", height)     // HINT: height
+//     .append("g")
+//     .attr("transform", "translate(150, 30)");
+
+// // TODO: Create a linear scale for the x axis (number of occurrences)
+// let x1 = d3.scaleLinear()
+//     .range([0, width-margin.left-margin.right]);
+
+// // TODO: Create a scale band for the y axis (artist)
+// let y1 = d3.scaleBand()
+//     .range([0, height-margin.bottom-margin.top])
+//     .padding(0.1);  // Improves readability
+// /*
+//     Here we will create global references to the x and y axis with a fixed range.
+//     We will update the domain of the axis in the setData function based on which data source
+//     is requested.
+//  */
+
+// // Set up reference to count SVG group
+// let countRef1 = svg1.append("g");
+// // Set up reference to y axis label to update text in setData
+// let y_axis_label1 = svg1.append("g");
+
+// // TODO: Add x-axis label
+// svg1.append("text")
+//     .attr("transform", 'translate(300,290)')       // HINT: Place this at the bottom middle edge of the graph
+//     .style("text-anchor", "middle")
+//     .text("Count");
+// // Since this text will not update, we can declare it outside of the setData function
+
+
+// // TODO: Add y-axis label
+// let y_axis_text1 = svg1.append("text")
+//     .attr("transform", 'translate(-105,135)')       // HINT: Place this at the center left edge of the graph
+//     .style("text-anchor", "middle");
+
+// // TODO: Add chart title
+// let title1 = svg1.append("text")
+// .attr("transform", 'translate(150,-10)')     // HINT: Place this at the top middle edge of the graph
+//     .style("text-anchor", "middle")
+//     .style("font-size", 15);
+// /*
+//     We declare global references to the y-axis label and the chart title to update the text when
+//     the data source is changed.
+//  */
+
+
+
+// /**
+//  * Sets the data on the barplot using the provided index of valid data sources and an attribute
+//  * to use for comparison
+//  */
+// function setData1(index, attr) {
+//     d3.csv("netflix_titles.csv").then(function(data) {
+//     genreKeys = cleanDataGenres(data, compGenres, NUM_EXAMPLES);
+//     currMin = 0;
+//     currMax = 10;
+//     extremes = calcMinMax(currMin, currMax);
+//     x1.domain([extremes[0], extremes[1]]);
+//     console.log(extremes);
+//         // TODO: Update the y axis domains with the desired attribute
+//         // y1.domain(data.map(function(d){return d[attr]}));
+//         y1.domain(genresDict.map(function(d){return d[attr]}))
+//         // HINT: Use the attr parameter to get the desired attribute for each data point
+
+//         // TODO: Render y-axis label
+//         y_axis_label1.call(d3.axisLeft(y1).tickSize(0).tickPadding(10));
+
+//         /*
+//             This next line does the following:
+//                 1. Select all desired elements in the DOM
+//                 2. Count and parse the data values
+//                 3. Create new, data-bound elements for each data value
+//          */
+//         let bars = svg1.selectAll("rect").data(data);
+
+//         // TODO: Render the bar elements on the DOM
+//         /*
+//             This next section of code does the following:
+//                 1. Take each selection and append a desired element in the DOM
+//                 2. Merge bars with previously rendered elements
+//                 3. For each data point, apply styling attributes to each element
+
+//             Remember to use the attr parameter to get the desired attribute for each data point
+//             when rendering.
+//          */
+//         bars.enter()
+//             .append("rect")
+//             .merge(bars)
+//             .transition()
+//             .duration(1000)
+//             .attr("x", x1(0))
+//             .attr("y", function(d){return y1(d[attr]);})               // HINT: Use function(d) { return ...; } to apply styles based on the data point
+//             .attr("width", function(d){return x1(parseInt(d.count))})
+//             .attr("height",  y1.bandwidth());        // HINT: y.bandwidth() makes a reasonable display height
+
+//         /*
+//             In lieu of x-axis labels, we are going to display the count of the artist next to its bar on the
+//             bar plot. We will be creating these in the same manner as the bars.
+//          */
+//         let counts = countRef1.selectAll("text").data(genresDict);
+
+//         // TODO: Render the text elements on the DOM
+//         counts.enter()
+//             .append("text")
+//             .merge(counts)
+//             .transition()
+//             .duration(1000)
+//             .attr("x", function(d){return x1(parseInt(d.listed_in)+8);})       // HINT: Add a small offset to the right edge of the bar, found by x(d.count)
+//             .attr("y", function(d){return y1(genresDict[d.listed_in])+12})       // HINT: Add a small offset to the top edge of the bar, found by y(d.artist)
+//             .style("text-anchor", "start")
+//             .text(function(d){return parseInt(d.count)});           // HINT: Get the count of the artist
+
+//         y_axis_text1.text(attr);
+    
+//         title1.text("Average runtime of movies by release year");
+
+//         // Remove elements not in use if fewer groups in new dataset
+//         bars.exit().remove();
+//         counts.exit().remove();
+//     });
+// }
+
+// function calcMinMax(startidx, endidx){
+//     min = 999999999999999999;
+//     max = -1;
+//     for (i = startidx; i < endidx+1; i++){
+//         curr = genresDict[genreKeys[i]];
+//         if (curr > max){
+//             max = curr;
+//         }
+//         if (curr < min){
+//             min = curr;
+//         }
+//     }
+//     return [min, max]
+// }
+
+// function compGenres(first, second){
+//     return(parseInt(second.listed_in)-parseInt(first.listed_in));
+// };
+
+// function cleanDataGenres(data, comparator, numExamples) {
+//     // TODO: sort and return the given data with the comparator (extracting the desired number of examples)
+//     data = data.sort(comparator);
+//     for(i = 0; i < data.length; i++){
+//         if (data[i].listed_in in genresDict){
+//             genresDict[data[i].listed_in] += 1;
+//         } else {
+//             genresDict[data[i].listed_in] = 1;
+//         }
+//     }
+//     let ks = Object.keys(genresDict);
+//     return ks;
+// }
+
+// function cleanDataYearsRuntime(data, comparator, numExamples){
+//     data = data.sort(comparator);
+//     data = data.slice(0, numExamples);
+//     return data;
+// }
+
+// // On page load, render the barplot with the artist data
+// setData1(0, "listed_in");
+

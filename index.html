@@ -13,16 +13,84 @@
         <h3>Assignment 6 &laquo; Data Visualization Dashboard &raquo;</h3>
     </div>
     <!--  We included a basic HTML structure for the 3 graphs here. Feel free to change this if you'd like  -->
-    <div class="row">
+    <div class="row" style="display: flex; justify-content: center;">
         <div class="col-lg-6">
-            <div id="graph1"></div>
-            <div id="graph2"></div><br/>
+            <div  id="graph1"> 
+            </div>
+            <div style="display: flex; justify-content: center;">
+                <button type="button" class=" btn btn-info myButton" onclick="genresUp()">Up</button>
+                <button type="button" class=" btn btn-info myButton" onclick="genresDown()">Down</button>
+            </div><br/><br/><br/>
+            
+        
+            <div id="graph2"></div>
+            <div style="display: flex; justify-content: center;">
+
+            <button type="button" class="btn btn-info myButton" onclick="yearsUp()">Up</button>
+            <button type="button" class="btn btn-info myButton" onclick="yearsDown()">Down</button>
+            <button type="button" class="btn btn-info myButton" onclick="switchTv()">TV/Movies</button>
+            </div>
         </div>
-        <div class="col-lg-6">
-            <div id="graph3"></div>
+    </div> <br/><br/><br/>
+    <div class="row"  style="display: flex; justify-content: center;">
+        <div class="col-lg-12" style="display: flex; justify-content: center;">
+            <form method="get" action="/graph3.html">
+                <button type="submit" class="btn btn-info" style="background: rgb(0,178,168); font-weight:bold; font-size:20px;">Click to see Graph 3</button>
+            </form>        
         </div>
     </div>
+    <br/><br/><br/>
+    </div>
     <!--Feel free to add more JavaScript files as needed-->
+    <!-- <script type="text/javascript" src="graph1-1.js"></script> -->
     <script type="text/javascript" src="main.js"></script>
+    <script type="text/javascript" src="graph2.js"></script>
+    <script type="text/javascript" src="graph3.js"></script>
+
+    <div style="margin:70px; width: 1000px;">
+        <ul>
+            <h4>Written Questions</h4>
+            <li>
+            Graph 1:
+            I put the number of titles per genre on Netflix into a bar graph. The view was limited to 9 genres at a time, sorted from greatest to least, so that the data was easier to view. 
+            <br/> Graph 2:
+            Average runtime of movies by release year was answered by averaging the runtime of movies during each release year, and putting it into a bar graph. Yet again the number of entires was limited to make the data more readable.
+        <br/>Graph 3:
+            For this question, I made the flowchart where each actor was a circular node and each line connected the actors. 
+            </li>
+            <li> 
+                1. D3 was useful because it made styling graphs quite easy; rather than manually editing HTML shapes, it does this for us which
+                made things a lot simpler.
+                <br/>2. D3 was interactive, and made it possible to handle graph interactions and updates without having to manually delete or add shapes, text, etc.
+                <br/>3. It was fairly easy to make graphs; once one was made, other similar ones were quite straightforward.
+            </li>
+            <li> 1. D3 was not the fastest when there was a large amount of data. Because there is a lot of math involved in some graphs, 
+                for instance in my flowchart graph, the browser is overloaded and has trouble keeping up.
+                <br/>2. There are some constraings with D3, for instance the data needs to be preprocessed very specifically and this may be difficult
+                or slow in some circumstances
+                <br/>3. It is not particularly easy to style elements in D3 since the .attr() must be used rather than pure CSS; this makes styling
+                much more tedious and also decreases code readability. 
+            </li>
+            </ul>
+            <ul>
+                    <h4>Ethical Questions</h4>
+                    <li>
+                    Those with hearing impairments would find this dashboard accessible, since no sound is used. Those with visual impairments may not find
+                    this page accessible, since it reuqires mousing over or clicking on buttons to see labels/alter the data. These are good features 
+                    for a user without disabilities, however for those who find it difficult to click on menus or buttons, or view smaller text, this dashboard
+                    is not ideal. It would be better to have all data displayed as a default, rather than having data or labels appear when the mouse hovers
+                    over the data point as in my third graph. In addition, voice over capabilities could be added to the graph; with D3 graphs, it would take
+                    some additional work to make sure that the data was also displayed in a way that could be accessed by those with visual impairments.
+                    </li>
+                <li>
+                    During the design impelmentation stage, one reason that I took steps that may not have been ideal for those with disabilities was becuase of 
+                    the way in which D3 is set up. It would've been somewhat hard to display shapes in the most accessible possible way. In addition, adding
+                    more accessible elements would often mean decreasing functionality of the graph or making it less visually appealing to those without 
+                    visual impairments; this is not fair, though, to those with disabilities and should be used as an excuse. In addition, the Assignment
+                    specification made me want to add functionality (such as hover titles) which I may not have done if these were not the requirements.
+                </li>
+            </ul>
+    </div>
 </body>
 </html>
+

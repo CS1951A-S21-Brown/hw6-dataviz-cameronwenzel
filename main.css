@@ -1,12 +1,27 @@
 .header {
-    padding-bottom: 20px;
-    margin-bottom: 20px;
+  padding-bottom: 20px;
+  margin-bottom: 20px;
 }
 
-.header > h3, h5 {
-    margin: 0;
-    padding-top: 20px;
-    text-align: center;
+.header > h3,
+h5 {
+  margin: 0;
+  padding-top: 20px;
+  text-align: center;
+}
+
+.graph3box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.myButton {
+  border-radius: 0.5vh;
+  margin-left: 5px;
+  margin-right: 5px;
+  margin-top: 5px;
+  margin-bottom: 5px;
 }
 
 /* Include any custom CSS styling here! */
